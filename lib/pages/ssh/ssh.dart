@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:stork_terminal/ssh/backend.dart';
+import 'package:stork_terminal/pages/ssh/backend.dart';
 import 'package:xterm/frontend/terminal_view.dart';
 import 'package:xterm/xterm.dart';
 
