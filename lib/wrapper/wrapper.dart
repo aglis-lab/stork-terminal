@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stacker/stacker.dart';
+import 'package:stacker2/stacker.dart';
 import 'package:stork_terminal/content/content.dart';
 import 'package:stork_terminal/tab/const.dart';
 import 'package:stork_terminal/tab/tab.dart';
