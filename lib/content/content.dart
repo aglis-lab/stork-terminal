@@ -16,6 +16,7 @@ class ContentScreen extends StatelessWidget {
       initialRoute: "/",
       onGenerateRoute: (setting) {
         final child = routes[setting.name];
+
         return MaterialPageRoute(
           settings: setting,
           builder: child!,
