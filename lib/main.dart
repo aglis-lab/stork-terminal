@@ -6,7 +6,7 @@ import 'package:stork_terminal/pages/ssh/ssh.dart';
 import 'package:stork_terminal/wrapper/wrapper.dart';
 
 void main() async {
-  // await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: ".env");
 
   runApp(const App());
 }
