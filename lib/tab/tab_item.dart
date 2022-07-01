@@ -84,6 +84,10 @@ class TabItemWidget extends StatelessWidget {
 
 class TabItem {
   final String title;
+  final GlobalKey key;
 
-  TabItem(this.title);
+  TabItem({
+    required this.title,
+    required this.key,
+  });
 }

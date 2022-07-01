@@ -1,16 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:stork_terminal/material/material.dart';
-import 'package:stork_terminal/pages/home/home.dart';
 
 class ContentScreen extends StatelessWidget {
-  const ContentScreen({Key? key, required this.title}) : super(key: key);
+  ContentScreen({
+    Key? key,
+    required this.title,
+    required this.routes,
+  }) : super(key: key);
 
   final String title;
+  final Map<String, WidgetBuilder> routes;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialScreen(
-      home: HomePage(),
+    return Navigator(
+      initialRoute: "/",
+      onGenerateRoute: (setting) {
+        final child = routes[setting.name];
+        return MaterialPageRoute(
+          settings: setting,
+          builder: child!,
+        );
+      },
     );
   }
+}
+
+class Routes {
+  static final Routes _singleton = Routes._internal();
+  factory Routes() => _singleton;
+  Routes._internal();
+
+  final homePage = "/";
+  final sshPage = "/ssh";
 }

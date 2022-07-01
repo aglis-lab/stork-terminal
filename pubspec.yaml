@@ -45,6 +45,8 @@ dependencies:
   # Widgets
   side_navigation: ^1.0.2
   responsive_grid: ^2.1.0
+  stacker:
+    path: ../stacker
 
 dev_dependencies:
   flutter_test:

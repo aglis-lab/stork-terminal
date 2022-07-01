@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:stacker/stacker.dart';
 import 'package:stork_terminal/content/content.dart';
 import 'package:stork_terminal/tab/const.dart';
 import 'package:stork_terminal/tab/tab.dart';
 import 'package:stork_terminal/tab/tab_item.dart';
 
 class WrapperScreen extends StatefulWidget {
-  const WrapperScreen({Key? key, required this.title}) : super(key: key);
+  const WrapperScreen({Key? key, required this.contentRoutes})
+      : super(key: key);
 
-  final String title;
+  final Map<String, WidgetBuilder> contentRoutes;
 
   @override
   State<WrapperScreen> createState() => _WrapperScreenState();
@@ -15,7 +17,6 @@ class WrapperScreen extends StatefulWidget {
 
 class _WrapperScreenState extends State<WrapperScreen> {
   final _tabs = <TabItem>[];
-  final _views = [];
 
   var _selectedIndex = 0;
 
@@ -24,8 +25,19 @@ class _WrapperScreenState extends State<WrapperScreen> {
     final theme = Theme.of(context);
     final canvasColor = theme.canvasColor;
 
-    if (_selectedIndex >= _views.length && _selectedIndex > 0) {
-      _selectedIndex = _views.length - 1;
+    if (_selectedIndex >= _tabs.length && _selectedIndex > 0) {
+      _selectedIndex = _tabs.length - 1;
+    }
+
+    final children = <Widget>[];
+    for (var tab in _tabs) {
+      children.add(
+        ContentScreen(
+          key: tab.key,
+          title: tab.title,
+          routes: widget.contentRoutes,
+        ),
+      );
     }
 
     return Scaffold(
@@ -52,7 +64,6 @@ class _WrapperScreenState extends State<WrapperScreen> {
                     selectedIndex: _selectedIndex,
                     onRemove: (val) {
                       _tabs.removeAt(val);
-                      _views.removeAt(val);
 
                       setState(() {});
                     },
@@ -65,9 +76,12 @@ class _WrapperScreenState extends State<WrapperScreen> {
                     addTab: () {
                       // TODO: Change with something else
                       final title = "Testing ${_tabs.length}";
+                      final key = GlobalKey<NavigatorState>();
 
-                      _tabs.add(TabItem(title));
-                      _views.add(ContentScreen(title: title));
+                      _tabs.add(TabItem(
+                        title: title,
+                        key: key,
+                      ));
 
                       setState(() {});
                     },
@@ -76,11 +90,15 @@ class _WrapperScreenState extends State<WrapperScreen> {
               ],
             ),
             Expanded(
-              child: _views.isEmpty
+              child: _tabs.isEmpty
                   ? const Center(
                       child: Text("Select hosts"),
                     )
-                  : _views[_selectedIndex],
+                  : StackSwitcher(
+                      children,
+                      child: _selectedIndex,
+                      maintainStates: true,
+                    ),
             ),
           ],
         ),
