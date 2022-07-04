@@ -43,10 +43,10 @@ dependencies:
   flutter_dotenv: ^5.0.2
 
   # Widgets
+  flutter_svg: ^1.1.1+1
   side_navigation: ^1.0.2
   responsive_grid: ^2.1.0
-  stacker2:
-    path: ../stacker2
+  stacker2: ^0.0.1+2
 
 dev_dependencies:
   flutter_test:

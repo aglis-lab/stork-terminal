@@ -15,6 +15,14 @@ class SSHPage extends StatelessWidget {
     final password = dotenv.get("PASSWORD");
 
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.snippet_folder_outlined),
+          ),
+        ],
+      ),
       body: TerminalView(
         padding: 16,
         terminal: Terminal(

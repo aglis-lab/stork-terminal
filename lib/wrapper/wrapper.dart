@@ -75,7 +75,7 @@ class _WrapperScreenState extends State<WrapperScreen> {
                     },
                     addTab: () {
                       // TODO: Change with something else
-                      final title = "Testing ${_tabs.length}";
+                      final title = "Dashboard";
                       final key = GlobalKey<NavigatorState>();
 
                       _tabs.add(TabItem(

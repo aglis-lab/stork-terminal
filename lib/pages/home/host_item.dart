@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const hostItemHeight = 100.0;
+
 class HostItemWidget extends StatelessWidget {
   const HostItemWidget({
     Key? key,
@@ -16,7 +18,7 @@ class HostItemWidget extends StatelessWidget {
     final bgColor = theme.primaryColor;
 
     return SizedBox(
-      height: 80,
+      height: hostItemHeight,
       child: Material(
         color: bgColor,
         borderRadius: BorderRadius.circular(8),
